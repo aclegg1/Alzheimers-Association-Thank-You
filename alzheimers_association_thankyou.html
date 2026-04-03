@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alzheimer's Association – Thank You Card</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --purple:     #5c2d82;
+    --purple-mid: #7a3fa8;
+    --purple-dk:  #3d1a5c;
+    --purple-lt:  #ede7f6;
+    --gold:       #c9a84c;
+    --gold-lt:    #f5e9c8;
+    --off-white:  #faf8f5;
+    --ink:        #1a1a2e;
+    --mid-gray:   #6b6b80;
+  }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .no-print { display: none !important; }
+    .card-wrap { margin: 0; }
+    .card { box-shadow: none; }
+  }
+
+  body {
+    background: #e8e2dc;
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  /* ── Controls ── */
+  .controls {
+    width: 100%;
+    max-width: 820px;
+    margin-bottom: 1.5rem;
+    background: white;
+    border-radius: 10px;
+    padding: 1.2rem 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem 1.25rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,.1);
+  }
+  .controls h3 {
+    grid-column: 1/-1;
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--purple);
+    border-bottom: 1px solid var(--purple-lt);
+    padding-bottom: .5rem;
+    margin-bottom: .25rem;
+  }
+  .field label {
+    display: block;
+    font-size: .65rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+    margin-bottom: .3rem;
+  }
+  .field input, .field textarea {
+    width: 100%;
+    border: 1.5px solid #ddd;
+    border-radius: 6px;
+    padding: .42rem .65rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: .78rem;
+    color: var(--ink);
+    outline: none;
+    transition: border-color .2s;
+  }
+  .field input:focus, .field textarea:focus { border-color: var(--purple); }
+  .field textarea { resize: vertical; min-height: 72px; }
+  .field.full { grid-column: 1/-1; }
+  .btn-row {
+    grid-column: 1/-1;
+    display: flex;
+    gap: .75rem;
+    justify-content: flex-end;
+    margin-top: .25rem;
+  }
+  button {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: .55rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: opacity .2s, transform .15s;
+  }
+  button:hover { opacity: .88; transform: translateY(-1px); }
+  .btn-primary { background: var(--purple); color: white; }
+  .btn-outline  { background: white; color: var(--purple); border: 1.5px solid var(--purple); }
+
+  /* ── Card ── */
+  .card-wrap { width: 820px; }
+
+  .card {
+    width: 820px;
+    height: 560px;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,.22);
+    border-radius: 4px;
+  }
+
+  /* LEFT PANEL — deep purple */
+  .panel-left {
+    width: 300px;
+    flex-shrink: 0;
+    background: linear-gradient(160deg, var(--purple-dk) 0%, var(--purple) 55%, var(--purple-mid) 100%);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 32px;
+    overflow: hidden;
+  }
+
+  /* Decorative circles on left panel */
+  .panel-left::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,.25);
+  }
+  .panel-left::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: -80px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,.18);
+  }
+
+  .panel-left .inner-ring {
+    position: absolute;
+    top: -20px; left: -20px;
+    width: 130px; height: 130px;
+    border-radius: 50%;
+    border: .5px solid rgba(201,168,76,.15);
+  }
+  .panel-left .inner-ring-2 {
+    position: absolute;
+    bottom: -30px; right: -30px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    border: .5px solid rgba(201,168,76,.12);
+  }
+
+  /* Gold top / bottom lines on left */
+  .gold-rule-top {
+    position: absolute;
+    top: 22px; left: 22px; right: 22px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .gold-rule-bottom {
+    position: absolute;
+    bottom: 22px; left: 22px; right: 22px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  /* Thank You headline on left */
+  .thank-you-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .58rem;
+    font-weight: 600;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.6);
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  .thank-you-word {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.6rem;
+    font-weight: 300;
+    font-style: italic;
+    color: white;
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+  .thank-you-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(255,255,255,.75);
+    margin-top: 6px;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+
+  /* Gold divider ornament */
+  .ornament {
+    margin: 18px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    z-index: 1;
+  }
+  .ornament-line {
+    width: 50px;
+    height: 1px;
+    background: var(--gold);
+    opacity: .7;
+  }
+  .ornament-diamond {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    opacity: .9;
+  }
+
+  /* Org name on left */
+  .left-org {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .58rem;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.7);
+    text-align: center;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* RIGHT PANEL — cream */
+  .panel-right {
+    flex: 1;
+    background: var(--off-white);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 42px 48px 36px 48px;
+    overflow: hidden;
+  }
+
+  /* Subtle corner ornaments on right */
+  .corner-tr, .corner-br {
+    position: absolute;
+    width: 60px; height: 60px;
+    pointer-events: none;
+  }
+  .corner-tr { top: 16px; right: 16px; }
+  .corner-br { bottom: 16px; right: 16px; transform: scaleY(-1); }
+
+  /* Right top: recipient greeting */
+  .greeting-block { display: flex; flex-direction: column; gap: 4px; }
+
+  .dear-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .58rem;
+    font-weight: 600;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+  }
+  .recipient-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.1;
+    padding-bottom: 6px;
+    border-bottom: 1.5px solid var(--gold);
+    display: inline-block;
+  }
+
+  /* Body message */
+  .message-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.08rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.75;
+    max-width: 420px;
+  }
+  .message-body em {
+    font-style: italic;
+    color: var(--purple);
+  }
+
+  /* Closing */
+  .closing-block { display: flex; flex-direction: column; gap: 2px; }
+  .closing-word {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--mid-gray);
+  }
+  .closing-sig {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--purple);
+    letter-spacing: .02em;
+  }
+  .closing-org {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .58rem;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+    margin-top: 1px;
+  }
+
+  /* Date bottom-right */
+  .date-stamp {
+    position: absolute;
+    bottom: 36px;
+    right: 48px;
+    text-align: right;
+  }
+  .date-stamp-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .5rem;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+    display: block;
+    margin-bottom: 2px;
+  }
+  .date-stamp-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: .9rem;
+    color: var(--ink);
+    letter-spacing: .03em;
+  }
+
+  /* Right border accent */
+  .right-border-accent {
+    position: absolute;
+    top: 0; right: 0;
+    width: 4px; height: 100%;
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-mid) 50%, var(--purple) 100%);
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Edit Controls ── -->
+<div class="controls no-print">
+  <h3>Thank You Card Editor</h3>
+
+  <div class="field">
+    <label>Recipient Name</label>
+    <input id="recipientName" type="text" value="Jane Smith" />
+  </div>
+
+  <div class="field">
+    <label>Date</label>
+    <input id="certDate" type="text" value="April 2, 2026" />
+  </div>
+
+  <div class="field full">
+    <label>Personal Message</label>
+    <textarea id="messageBody">Your dedication to the Alzheimer's and dementia community has made a meaningful difference in the lives of those we serve together. We are deeply grateful for your time, compassion, and commitment to our shared mission.</textarea>
+  </div>
+
+  <div class="field">
+    <label>Signed By — Name</label>
+    <input id="sigName" type="text" value="Elizabeth Johnson" />
+  </div>
+  <div class="field">
+    <label>Signed By — Title</label>
+    <input id="sigRole" type="text" value="Executive Director" />
+  </div>
+
+  <div class="btn-row">
+    <button class="btn-outline" onclick="updateCard()">Update Preview</button>
+    <button class="btn-primary" onclick="window.print()">Print / Save PDF</button>
+  </div>
+</div>
+
+<!-- ── Card ── -->
+<div class="card-wrap">
+<div class="card" id="thankyouCard">
+
+  <!-- LEFT PANEL -->
+  <div class="panel-left">
+    <div class="inner-ring"></div>
+    <div class="inner-ring-2"></div>
+    <div class="gold-rule-top"></div>
+    <div class="gold-rule-bottom"></div>
+
+    <span class="thank-you-label">With Gratitude</span>
+    <div class="thank-you-word">Thank<br>You</div>
+    <div class="thank-you-sub">from all of us</div>
+
+    <div class="ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line"></div>
+    </div>
+
+    <div class="left-org">
+      Alzheimer's<br>Association®
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="panel-right">
+    <div class="right-border-accent"></div>
+
+    <!-- Corner ornaments -->
+    <div class="corner-tr">
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 4 L4 30 M4 4 L30 4" stroke="#c9a84c" stroke-width="1.2"/>
+        <circle cx="4" cy="4" r="2.5" fill="#c9a84c" opacity=".7"/>
+      </svg>
+    </div>
+    <div class="corner-br">
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 4 L4 30 M4 4 L30 4" stroke="#c9a84c" stroke-width="1.2"/>
+        <circle cx="4" cy="4" r="2.5" fill="#c9a84c" opacity=".7"/>
+      </svg>
+    </div>
+
+    <!-- Greeting -->
+    <div class="greeting-block">
+      <span class="dear-label">Dear</span>
+      <span class="recipient-name" id="dispRecipientName">Jane Smith</span>
+    </div>
+
+    <!-- Body -->
+    <p class="message-body" id="dispMessageBody">
+      Your dedication to the Alzheimer's and dementia community has made a meaningful difference in the lives of those we serve together. We are deeply grateful for your time, compassion, and commitment to our shared mission.
+    </p>
+
+    <!-- Closing -->
+    <div class="closing-block">
+      <span class="closing-word">With heartfelt gratitude,</span>
+      <span class="closing-sig" id="dispSigName">Elizabeth Johnson</span>
+      <span class="closing-org" id="dispSigRole">Executive Director · Alzheimer's Association®</span>
+    </div>
+
+    <!-- Date -->
+    <div class="date-stamp">
+      <span class="date-stamp-label">Date</span>
+      <span class="date-stamp-value" id="dispDate">April 2, 2026</span>
+    </div>
+
+  </div><!-- /panel-right -->
+</div><!-- /card -->
+</div><!-- /card-wrap -->
+
+<script>
+function updateCard() {
+  const name    = document.getElementById('recipientName').value.trim() || '[Recipient Name]';
+  const date    = document.getElementById('certDate').value.trim();
+  const msg     = document.getElementById('messageBody').value.trim();
+  const sigName = document.getElementById('sigName').value.trim();
+  const sigRole = document.getElementById('sigRole').value.trim();
+
+  document.getElementById('dispRecipientName').textContent = name;
+  document.getElementById('dispDate').textContent          = date;
+  document.getElementById('dispMessageBody').textContent   = msg;
+  document.getElementById('dispSigName').textContent       = sigName;
+  document.getElementById('dispSigRole').textContent       = sigRole
+    ? `${sigRole} · Alzheimer's Association®`
+    : "Alzheimer's Association®";
+}
+</script>
+</body>
+</html>
